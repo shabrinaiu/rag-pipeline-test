@@ -16,7 +16,7 @@ A Retrieval-Augmented Generation (RAG) pipeline for cybersecurity question answe
 
    ```sh
    git clone <your-repo-url>
-   cd rag-cybersec-llm
+   cd rag-pipeline-test
    ```
 
 2. **Install Python dependencies:**
