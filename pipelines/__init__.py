@@ -5,6 +5,11 @@ from memory import MemoryManager
 
 
 class RagPipeline:
+    """
+    Orchestrates the RAG workflow: retrieves context, augments prompt, and generates responses using an LLM.
+    Optionally manages conversation memory for multi-turn dialogue.
+    """
+
     def __init__(
         self,
         retriever: BaseVectorStore,
@@ -16,6 +21,10 @@ class RagPipeline:
         self.memory_manager = memory_manager
 
     def run(self, query):
+        """
+        Run the RAG pipeline for a user query.
+        Retrieves context, prepares prompt, manages memory, and generates a response.
+        """
         context = self.retriever.search_documents(query)
 
         prompt = self.prepare_prompt(query, context)
@@ -37,6 +46,9 @@ class RagPipeline:
         return response
 
     def prepare_prompt(self, query, context):
+        """
+        Prepare the prompt for the LLM by combining the user query and retrieved context.
+        """
         prompt_template = """You are an expert in answering user questions. You always understand user questions well, and then provide high-quality answers based on the information provided in the context.
 
 If the provided context does not contain relevent information, just respond "I could not find the answer based on the context you provided."

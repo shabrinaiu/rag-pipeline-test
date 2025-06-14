@@ -3,10 +3,16 @@ import torch
 import bitsandbytes, accelerate
 
 from . import LLMGenerator
+from utils.config import default_llm_model
 
 
 class GemmaGenerator(LLMGenerator):
-    def __init__(self, model_name="google/gemma-1.1-7b-it"):
+    """
+    Google Gemma LLM generator for text generation tasks.
+    Uses HuggingFace Transformers pipeline with quantization for efficiency.
+    """
+
+    def __init__(self, model_name=default_llm_model):
         super().__init__(
             name="Gemma",
             description="A large language model developed by Google, designed for various natural language processing tasks.",
@@ -26,6 +32,10 @@ class GemmaGenerator(LLMGenerator):
         )
 
     def generate(self, prompt, **kwargs):
+        """
+        Generate a response from the Gemma LLM given a prompt and optional parameters.
+        Handles both list and dict output structures from the pipeline.
+        """
         chat_prompt = self.tokenizer.apply_chat_template(
             prompt, tokenize=False, add_generation_prompt=True
         )

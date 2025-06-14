@@ -6,6 +6,11 @@ import pandas as pd
 
 
 def load_dataset() -> List[Document]:
+    """
+    Load and preprocess the cybersecurity dataset from Excel.
+    Splits articles into chunks for embedding and retrieval.
+    Returns a list of Document objects.
+    """
     df = pd.read_excel(
         "./data/raw/TheHackerNews_Dataset.xlsx"
     )  # Replace with your actual file

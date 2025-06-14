@@ -7,6 +7,11 @@ from sentence_transformers import SentenceTransformer
 
 
 class ChromaVectorStore(BaseVectorStore):
+    """
+    ChromaDB-backed vector store for document embedding and retrieval.
+    Uses Sentence Transformers for embedding generation.
+    """
+
     def __init__(
         self,
         collection_name: str = "rag_collection",
@@ -25,6 +30,10 @@ class ChromaVectorStore(BaseVectorStore):
         )
 
     def add_documents(self, documents: List[Document]):
+        """
+        Add a list of Document objects to the Chroma vector store.
+        Embeds documents in batches for efficiency.
+        """
         print(
             f"Adding {len(documents)} documents to the Chroma vector store '{self.collection_name}'"
         )
@@ -48,6 +57,10 @@ class ChromaVectorStore(BaseVectorStore):
             )
 
     def search_documents(self, query: str, top_k: int = 3) -> List[Document]:
+        """
+        Search for the most relevant documents in the Chroma vector store for a given query.
+        Returns a list of Document objects.
+        """
         print(
             f"Searching for '{query}' in the Chroma vector store '{self.collection_name}'"
         )
