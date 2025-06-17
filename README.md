@@ -171,3 +171,21 @@ MIT License
 - [Huggingface Transformers](https://huggingface.co/transformers/)
 - [ChromaDB](https://www.trychroma.com/)
 - [Sentence Transformers](https://www.sbert.net/)
+
+---
+
+## Evaluation with DeepEval and Gemini
+
+Before running the evaluation script, set up Gemini as the LLM for DeepEval:
+
+```sh
+deepeval set-gemini --model-name="gemini-2.0-flash-001" --google-api-key=$GOOGLE_API_KEY
+```
+
+Then run the evaluation script:
+
+```sh
+python evaluate_rag_pentesting_eval.py
+```
+
+This will evaluate your RAG pipeline using the HuggingFace pentesting-eval dataset and DeepEval metrics.
